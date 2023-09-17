@@ -1,10 +1,8 @@
 # Invoices Manager (written in WPF C#   DOTNET6.0)
 
 ## Important Info!
-The program may contain errors, if any are found, please report them, 
-I always recommend to make a BackUp of the Data Folder or to do it 
-via the BackUp function in the program.  
-  
+The program may contain errors, if any are found, please report them.
+
 
 ## Application description:
 Are you also tired of putting all your invoices (and other documents) 
@@ -18,8 +16,8 @@ It's simple, there are enough options to filter your documents.
 
 ## How to Download:
 Go to the "Releases" and download any version. (for security the latest one).  <br/>
-Or [press here](#) to download if you want the latest one (normal) <br/>
-Or [press here](#) to download if you want the latest one (standalone) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Cloud-Windows/releases/download/InvoicesManager-Vers-2.1.1.0/InvoicesManager_WindowsX86.zip) to download if you want the latest one (normal) <br/>
+Or [press here](https://github.com/Invoices-Manager/Invoices-Manager-Cloud-Windows/releases/download/InvoicesManager-Vers-2.1.1.0/InvoicesManager_WindowsX86_Standalone.zip) to download if you want the latest one (standalone) <br/>
 
 
 ## Features:
@@ -73,6 +71,9 @@ Or [press here](#) to download if you want the latest one (standalone) <br/>
 ### Y = Minor version (big updates)
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
+
+## v2.1.1.0
+- The loading of the invoices has been improved by 83.64%, previously it took an average of 8.29s for 150 invoices, and now only 1.3s.
 
 ## v2.1.0.0
 - The data and files which are sent to the API are encrypted with the user password and the received salt from the server (AES256 + Salt).

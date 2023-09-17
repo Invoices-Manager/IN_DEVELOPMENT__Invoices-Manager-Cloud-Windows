@@ -54,7 +54,10 @@
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
-            => RefreshDataGridWithInit();
+        {
+
+          //   RefreshDataGridWithInit();
+        }
 
         private void GenerateDebugDataRecords()
         {
@@ -91,9 +94,7 @@
             LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.MainWindow_View, "init threads was requested");
 #endif
 
-            InvoiceSystem iSys = new InvoiceSystem();
-
-            Thread _initInvoicesThread = new Thread(iSys.Init);
+            Thread _initInvoicesThread = new Thread(InitInvoices);
             Thread _initOrganizationsThread = new Thread(ThreadTaskInitOrganization);
             Thread _initDocumentType = new Thread(ThreadTaskInitDocumentType);
             Thread _refreshDataGridThread = new Thread(ThreadTaskRefreshDataGrid);
@@ -122,7 +123,7 @@
             _initImportanceState.Start();
             _initImportanceState.Join();
         }
-
+        
         private void InitInvoices()
         {
             InvoiceSystem iSys = new InvoiceSystem();

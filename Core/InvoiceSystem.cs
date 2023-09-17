@@ -23,17 +23,34 @@
 #if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "Finished, loading the invoices from the json file");
 #endif
-                if (!(json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null")))
-                    foreach (InvoiceModel invoice in JsonConvert.DeserializeObject<List<InvoiceModel>>(json))
+                //check if the json is empty, if yes then set the flag to true and return (because there is no invoices)
+                if (json.Equals("[]") || String.IsNullOrWhiteSpace(json) || json.Equals("null"))
+                {
+                    EnvironmentsVariable.IsInvoiceInitFinish = true;
+                    return;
+                }
+
+                //create a list of tasks, to wait for all of them to finish
+                List<Task> tasks = new List<Task>();
+
+                foreach (InvoiceModel invoice in JsonConvert.DeserializeObject<List<InvoiceModel>>(json))
+                {
+                    Task task = Task.Run(() =>
                     {
-                        //decrypt invoice
-                        EnvironmentsVariable.AllInvoices.Add(DecryptInvoice(invoice));
-                    }
+                        //decrypt the invoice
+                        InvoiceModel decryptedModel = DecryptInvoice(invoice);
 
-                //remove the unessary spaces from the tags
-                EnvironmentsVariable.AllInvoices.ForEach(x => x.Tags = x.Tags.Select(y => y.Trim()).ToArray());
+                        //semove unnecessary spaces from the tags within the Task
+                        decryptedModel.Tags = decryptedModel.Tags.Select(tag => tag.Trim()).ToArray();
+   
+                        EnvironmentsVariable.AllInvoices.Add(decryptedModel);
+                    });
 
-                //set the flag to true
+                    tasks.Add(task);
+                }
+
+                Task.WhenAll(tasks).Wait();
+
                 EnvironmentsVariable.IsInvoiceInitFinish = true;
 #if DEBUG
                 LoggerSystem.Log(LogStateEnum.Debug, LogPrefixEnum.Invoice_System, "set EnvironmentsVariable.IsInvoiceInitFinish to true");
