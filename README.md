@@ -74,6 +74,9 @@ Or [press here](#) to download if you want the latest one (standalone) <br/>
 ### Z = Minor version (small updates)
 ### W = Revision version (bug fixes)
 
+## v2.1.1.0
+- The loading of the invoices has been improved by 83.64%, previously it took an average of 8.29s for 150 invoices, and now only 1.3s.
+
 ## v2.1.0.0
 - The data and files which are sent to the API are encrypted with the user password and the received salt from the server (AES256 + Salt).
 - Fixes some logic bugs and typos
