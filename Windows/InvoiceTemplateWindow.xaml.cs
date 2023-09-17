@@ -66,7 +66,7 @@
             Tb_DocumentType.Text = invoice.DocumentType;
             Tb_InvoiceNumber.Text = invoice.InvoiceNumber == "" ? "" : invoice.InvoiceNumber;
             Tb_Reference.Text = invoice.Reference;
-            Tb_MoneyTotal.Text = invoice.MoneyTotalDouble == -1 ? "" : invoice.MoneyTotal.ToString();
+            Tb_MoneyTotal.Text = invoice.MoneyTotalDouble == -1 ? "" : invoice.MoneyTotalDouble.ToString();
             Tb_Tags.Text = String.Join(";", invoice.Tags);
             Comb_ImportanceState.SelectedIndex = (int)invoice.ImportanceState;
             Comb_MoneyState.SelectedIndex = (int)invoice.MoneyState;
